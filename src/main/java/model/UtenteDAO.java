@@ -43,4 +43,32 @@ public class UtenteDAO {
         // Se le credenziali sono sbagliate, 'u' rimarrà null
         return u;
     }
+    /**
+     * Metodo per salvare un nuovo utente nel database (Registrazione)
+     */
+    public boolean doSave(Utente utente) {
+        // La query per inserire i dati. Usiamo i '?' per evitare la SQL Injection
+        String query = "INSERT INTO Utente (email, password, nome, cognome, ruolo) VALUES (?, ?, ?, ?, ?)";
+
+        try (Connection con = ConnessioneDB.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+
+            // Riempiamo i punti interrogativi con i dati dell'oggetto Utente
+            ps.setString(1, utente.getEmail());
+            ps.setString(2, utente.getPassword());
+            ps.setString(3, utente.getNome());
+            ps.setString(4, utente.getCognome());
+            ps.setString(5, "cliente"); // Chi si registra dal sito è sempre un "cliente" di default
+
+            // executeUpdate() si usa per INSERT, UPDATE e DELETE. Restituisce il numero di righe modificate.
+            int righeInserite = ps.executeUpdate();
+            
+            // Se ha inserito almeno 1 riga, la registrazione è andata a buon fine
+            return righeInserite > 0;
+
+        } catch (SQLException e) {
+            System.err.println("Errore durante la registrazione: " + e.getMessage());
+            return false; // Se c'è un errore (es. email già esistente), restituisce false
+        }
+    }
 }
