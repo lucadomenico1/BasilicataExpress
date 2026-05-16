@@ -40,10 +40,17 @@
         // 2. Controlliamo se il carrello è vuoto o non esiste ancora
         if (carrello == null || carrello.isEmpty()) {
     %>
-        <div class="empty-cart">
-            <p>Il tuo carrello è tristemente vuoto!</p>
-            <p>Torna alla home per scoprire i nostri viaggi.</p>
-        </div>
+       <div class="empty-cart">
+    <% 
+        String msgSuccesso = (String) request.getAttribute("messaggioSuccesso");
+        if (msgSuccesso != null) {
+    %>
+        <p style="color: #28a745; font-weight: bold;"><%= msgSuccesso %></p>
+    <% } else { %>
+        <p>Il tuo carrello è vuoto!</p>
+        <p>Torna alla home per scoprire i nostri viaggi.</p>
+    <% } %>
+</div>
         <a href="TratteServlet" class="btn">Torna alla Homepage</a>
     <%
         } else {
@@ -82,7 +89,7 @@
 
         <br>
         <a href="TratteServlet" class="btn">Continua lo shopping</a>
-        <a href="#" class="btn btn-acquista">Procedi all'Acquisto</a>
+        <a href="CheckoutServlet" class="btn btn-acquista">Procedi all'Acquisto</a>
     <%
         }
     %>
