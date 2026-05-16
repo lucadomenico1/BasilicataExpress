@@ -38,7 +38,7 @@
         <div><strong>Basilicata Express</strong></div>
         <div>
             <% 
-                // Recuperiamo l'utente dalla Sessione (grazie all'import model.Utente)
+                // Controllo se c'è un utente loggato in sessione per salutarlo
                 Utente utenteLoggato = (Utente) session.getAttribute("utenteLoggato");
                 
                 if (utenteLoggato != null) { 
@@ -61,10 +61,10 @@
         <h2>Tutte le tratte disponibili in tempo reale</h2>
 
         <% 
-            // 1. Recuperiamo la lista passata dalla Servlet
+            // Prendo la lista dei viaggi che mi ha preparato la Servlet
             List<Tratta> viaggi = (List<Tratta>) request.getAttribute("viaggiDisponibili");
             
-            // 2. Se la lista esiste ed è piena, stampiamo la tabella
+            // Verifico che la lista esista e non sia vuota prima di creare la tabella
             if(viaggi != null && !viaggi.isEmpty()) {
         %>
             <table>
@@ -75,11 +75,12 @@
                         <th>Data</th>
                         <th>Ora</th>
                         <th>Prezzo</th>
+                        <th>Azione</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% 
-                        // 3. Ciclo per ogni tratta trovata
+                        // Scorro tutti i viaggi e stampo una riga per ognuno
                         for(Tratta t : viaggi) { 
                     %>
                         <tr>
@@ -88,6 +89,13 @@
                             <td><%= t.getDataViaggio() %></td>
                             <td><%= t.getOra() %></td>
                             <td class="price-tag">€ <%= String.format("%.2f", t.getPrezzoAttuale()) %></td>
+                            
+                            <td>
+                                <form action="CarrelloServlet" method="post" style="margin:0;">
+                                    <input type="hidden" name="idTratta" value="<%= t.getIdTratta() %>">
+                                    <input type="submit" value="Aggiungi 🛒" style="background-color: #004aad; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;">
+                                </form>
+                            </td>
                         </tr>
                     <% 
                         } 

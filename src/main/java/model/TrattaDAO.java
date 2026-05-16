@@ -47,4 +47,36 @@ public class TrattaDAO {
 
         return viaggi;
     }
+    
+    /**
+     * Metodo per recuperare un singolo viaggio partendo dal suo ID
+     */
+    public Tratta doRetrieveById(int id) {
+        Tratta t = null;
+        // Usiamo il nome corretto della tua colonna: id_tratta
+        String query = "SELECT * FROM Tratta WHERE id_tratta = ?"; 
+
+        try (Connection con = ConnessioneDB.getConnection();
+             PreparedStatement ps = con.prepareStatement(query)) {
+
+            ps.setInt(1, id);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    t = new Tratta();
+                    // Usiamo i tuoi setter corretti!
+                    t.setIdTratta(rs.getInt("id_tratta"));
+                    t.setPartenza(rs.getString("partenza"));
+                    t.setArrivo(rs.getString("arrivo"));
+                    t.setDataViaggio(rs.getDate("data_viaggio"));
+                    t.setOra(rs.getTime("ora"));
+                    t.setPrezzoAttuale(rs.getDouble("prezzo_attuale"));
+                    t.setStato(rs.getString("stato"));
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Errore in doRetrieveById: " + e.getMessage());
+        }
+        return t;
+    }
 }
