@@ -7,27 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <title>Il tuo Carrello - Basilicata Express</title>
-    <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f4f9; text-align: center; padding: 20px; margin: 0;}
-        h1 { color: #004aad; }
-        
-        table { width: 80%; max-width: 800px; margin: 20px auto; border-collapse: collapse; background-color: white; box-shadow: 0 4px 10px rgba(0,0,0,0.1); border-radius: 8px; overflow: hidden; }
-        th { background-color: #ff6600; color: white; padding: 15px; }
-        td { padding: 15px; border-bottom: 1px solid #eee; color: #333; }
-        
-        .totale-box { margin-top: 30px; font-size: 1.5em; color: #004aad; }
-        .prezzo-totale { font-weight: bold; color: #ff6600; }
-        
-        .btn { background-color: #004aad; color: white; padding: 12px 25px; text-decoration: none; border-radius: 5px; font-weight: bold; display: inline-block; margin: 15px 10px; transition: background-color 0.3s; }
-        .btn:hover { background-color: #003380; }
-        .btn-acquista { background-color: #28a745; } /* Un bel verde per l'acquisto */
-        .btn-acquista:hover { background-color: #218838; }
-        
-        .empty-cart { font-size: 1.2em; color: #666; margin: 40px; }
-    </style>
+    <link rel="stylesheet" href="styles/style.css">
 </head>
 <body>
-
+	<@ include file="header.jsp" %>
     <h1>Il tuo Carrello 🛒</h1>
 
     <%
