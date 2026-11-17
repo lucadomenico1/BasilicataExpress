@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+    <!-- name: il nome logico che useremo nel codice (java:comp/env/jdbc/basilicata) -->
+    <Resource name="jdbc/basilicata"
+              auth="Container"
+              type="javax.sql.DataSource"
+              driverClassName="com.mysql.cj.jdbc.Driver"
+              url="jdbc:mysql://localhost:3306/basilicata_express?useSSL=false&amp;serverTimezone=Europe/Rome&amp;allowPublicKeyRetrieval=true"
+              username="be_user"
+              password="una_password"
+              maxTotal="20"
+              maxIdle="5"
+              maxWaitMillis="10000"/>
+</Context>
