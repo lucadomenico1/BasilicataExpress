@@ -3,25 +3,26 @@ package model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-public class Tratta {
+public class Tratte {
+
 	private int id;
 	private int partenza_id;
 	private int arrivo_id;
-	private String arrivo;
 	private String partenza;
+	private String arrivo;
 	private LocalDateTime data_ora_partenza;
 	private String mezzo;
-	private BigDecimal prezzo;  //Non uso double per i soldi perchè ha errori di arrotondamento
+	private BigDecimal prezzo;			//non uso double perchè porta errori di arrotondamento
 	private int posti_disponibili;
 	
-	
-	
+
 	//Costruttore
-	public Tratta() {
+	public Tratte() {
 		
 	}
 	
-	//Metodi getter e setter
+
+	//metodi getter e setter
 	public int getId() {
 		return id;
 	}
@@ -40,17 +41,17 @@ public class Tratta {
 	public void setArrivo_id(int arrivo_id) {
 		this.arrivo_id = arrivo_id;
 	}
-	public String getArrivo() {
-		return arrivo;
-	}
-	public void setArrivo(String arrivo) {
-		this.arrivo = arrivo;
-	}
 	public String getPartenza() {
 		return partenza;
 	}
 	public void setPartenza(String partenza) {
 		this.partenza = partenza;
+	}
+	public String getArrivo() {
+		return arrivo;
+	}
+	public void setArrivo(String arrivo) {
+		this.arrivo = arrivo;
 	}
 	public LocalDateTime getData_ora_partenza() {
 		return data_ora_partenza;
@@ -77,6 +78,6 @@ public class Tratta {
 		this.posti_disponibili = posti_disponibili;
 	}
 	
-
+	
 	
 }
